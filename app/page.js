@@ -11,6 +11,9 @@ import Inventory from "./components/inventory";
 export default function Home() {
 
   const [open, setOpen] = useState('none');
+  const [opensearch, setOpenSearch] = useState('none');
+  const handleOpenSearch = () => setOpenSearch('block');
+  const handleCloseSearch = () => setOpenSearch('none');
   const handleOpen = () => setOpen('block');
   const handleClose = () => setOpen('none');
 
@@ -29,19 +32,29 @@ export default function Home() {
       <Box
         display={"flex"}
         gap={2}
+        p={2}
       >
-        <Button variant="contained"
+        <Button variant="outlined"
           onClick={()=>{
           handleClose()
+          handleCloseSearch()
           }}>Home</Button>
-        <Button variant="contained"
+        <Button variant="outlined"
           onClick={()=>{
           handleOpen()
+          handleCloseSearch()
           }}>Inventory</Button>
+        <Button variant="outlined"
+          onClick={()=>{
+            if(opensearch==='none')
+            handleOpenSearch()
+            else 
+            handleCloseSearch()
+          }}>Search</Button>
       </Box>
 
       {/* Inventory */}
-      <Box display={open}> <Inventory/></Box>
+      <Box display={open}> <Inventory props={opensearch}/></Box>
 
 
       {/* Footer */}
