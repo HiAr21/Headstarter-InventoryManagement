@@ -1,20 +1,22 @@
 'use client'
-import React from "react";
-import { Box, Typography,Stack, TextField, Button } from "@mui/material";
-// import { getAuth , GoogleAuthProvider,signInWithRedirect } from "firebase/auth";
+import React, { useState } from "react";
+import { Box, TextField, Button } from "@mui/material";
 
-function Login(){    
+function Loginpage(){
+
+    const [email, setEmail]=useState("");
+    const [password, setPassword]= useState("");
+    
     return(
         <>
-        <Box>
-        <TextField id="outlined-basic" label="Email" variant="outlined" />
-        <TextField id="outlined-basic" label="Password" variant="outlined" />
-        <Button onClick={()=>{
-            
-        }}>Login</Button>
+        <Box display={"flex"} flexDirection={"column"} gap={1.5}>
+            <TextField id="outlined-basic" required label="Email" variant="outlined" value={email} onChange={(e)=>{setEmail(e.target.value)}}/>
+            <TextField id="outlined-basic" required label="Password" variant="outlined" value={password} onChange={(e)=>{ setPassword(e.target.value)}} />
+            <Button variant="contained">Login</Button>
+            <Button variant="contained">Login with google</Button>
         </Box>
         </>
     )
 }
 
-export default Login
+export default Loginpage
